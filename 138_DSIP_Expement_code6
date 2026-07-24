@@ -1,0 +1,47 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Function to generate a continuous ramp signal
+def simulate_continuous_ramp(time, slope):
+    ramp = np.zeros_like(time)
+    ramp[time >= 0] = slope * time[time >= 0]
+    return ramp
+
+# Function to generate a discrete ramp signal
+def simulate_discrete_ramp(num_samples, slope):
+    ramp = np.zeros(num_samples)
+    ramp[num_samples // 2:] = slope * np.arange(num_samples // 2, num_samples)
+    return ramp
+
+# Define the time range for the continuous ramp signal
+time = np.linspace(-5, 5, 1000)
+
+# Define parameters for the discrete ramp signal
+num_samples = 20
+slope = 2
+
+# Generate the signals
+continuous_ramp = simulate_continuous_ramp(time, slope)
+discrete_ramp = simulate_discrete_ramp(num_samples, slope)
+
+# Plot the signals
+plt.figure(figsize=(10, 6))
+
+# Continuous Ramp
+plt.subplot(2, 1, 1)
+plt.plot(time, continuous_ramp)
+plt.title("Continuous Ramp Signal")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+plt.grid(True)
+
+# Discrete Ramp
+plt.subplot(2, 1, 2)
+plt.stem(discrete_ramp)
+plt.title("Discrete Ramp Signal")
+plt.xlabel("Sample")
+plt.ylabel("Amplitude")
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
