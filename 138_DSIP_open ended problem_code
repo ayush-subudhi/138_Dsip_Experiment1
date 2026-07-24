@@ -1,0 +1,146 @@
+'''import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample values
+n = np.arange(-3, 13)
+
+# One period of the signal
+pattern = [2, 3, 2, 0]
+
+# Generate periodic signal
+x = np.array([pattern[(i + 3) % 4] for i in n])
+
+# Plot
+plt.figure(figsize=(10,5))
+plt.stem(n, x)
+
+plt.title("Periodic Discrete-Time Signal")
+plt.xlabel("n")
+plt.ylabel("x[n]")
+plt.grid(True)
+
+plt.show()'''
+
+
+
+
+
+
+'''import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample indices
+n = np.arange(-2, 7)
+
+# Initialize signal
+x = np.zeros_like(n)
+
+# Generate staircase signal
+x[(n >= 0) & (n < 1)] = 1
+x[(n >= 1) & (n < 2)] = 2
+x[(n >= 2) & (n < 4)] = 3
+x[(n >= 4) & (n < 5)] = 2
+x[(n >= 5) & (n < 6)] = 1
+
+# Plot
+plt.figure(figsize=(8,5))
+plt.stem(n, x)
+
+plt.title("Generated Staircase Signal")
+plt.xlabel("n")
+plt.ylabel("x[n]")
+plt.xticks(np.arange(-2,7))
+plt.yticks(np.arange(0,4))
+plt.grid(True)
+
+plt.show()'''
+
+
+
+
+
+'''import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample values
+n = np.arange(-4, 5)
+
+# Initialize signal
+x = np.zeros_like(n, dtype=float)
+
+# Constant section
+x[(n >= -2) & (n < 0)] = -2
+
+# Ramp section
+x[(n >= 0) & (n <= 1)] = 2 * n[(n >= 0) & (n <= 1)]
+
+# Constant positive section
+x[(n > 1) & (n <= 2)] = 2
+
+# Plot
+plt.figure(figsize=(8,5))
+plt.stem(n, x)
+
+plt.title("Piecewise Signal")
+plt.xlabel("n")
+plt.ylabel("x[n]")
+plt.grid(True)
+
+plt.show()'''
+
+
+
+
+
+'''import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample indices
+n = np.arange(-2, 12)
+
+# Unit step signals
+u = (n >= 0).astype(int)
+u3 = (n >= 3).astype(int)
+u7 = (n >= 7).astype(int)
+
+# Given signal
+x = u - u3 - 5*u7
+
+# Plot
+plt.figure(figsize=(9,5))
+plt.stem(n, x)
+
+plt.title("x[n] = u[n] - u[n-3] - 5u[n-7]")
+plt.xlabel("n")
+plt.ylabel("x[n]")
+plt.grid(True)
+
+plt.show()'''
+
+
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample indices
+n = np.arange(-5, 6)
+
+# Initialize signal
+x = np.zeros_like(n)
+
+# Generate impulses
+x[n == 0] = 1          # δ[n]
+x[n == 1] += 3         # 3δ[n-1]
+x[n == -1] += 5        # 5δ[n+1]
+
+# Plot
+plt.figure(figsize=(8,5))
+plt.stem(n, x)
+
+plt.title("x[n] = δ[n] + 3δ[n-1] + 5δ[n+1]")
+plt.xlabel("n")
+plt.ylabel("x[n]")
+plt.grid(True)
+
+plt.show()
